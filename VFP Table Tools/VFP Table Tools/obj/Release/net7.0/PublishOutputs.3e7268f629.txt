@@ -1,0 +1,20 @@
+C:\Users\adrion\Desktop\New folder (4)\VFP Table Creator.exe
+C:\Users\adrion\Desktop\New folder (4)\VFP Table Creator.dll
+C:\Users\adrion\Desktop\New folder (4)\VFP Table Creator.deps.json
+C:\Users\adrion\Desktop\New folder (4)\VFP Table Creator.runtimeconfig.json
+C:\Users\adrion\Desktop\New folder (4)\VFP Table Creator.pdb
+C:\Users\adrion\Desktop\New folder (4)\Microsoft.Win32.SystemEvents.dll
+C:\Users\adrion\Desktop\New folder (4)\System.Configuration.ConfigurationManager.dll
+C:\Users\adrion\Desktop\New folder (4)\System.Data.OleDb.dll
+C:\Users\adrion\Desktop\New folder (4)\System.Diagnostics.PerformanceCounter.dll
+C:\Users\adrion\Desktop\New folder (4)\System.Drawing.Common.dll
+C:\Users\adrion\Desktop\New folder (4)\System.Security.Cryptography.ProtectedData.dll
+C:\Users\adrion\Desktop\New folder (4)\System.Security.Permissions.dll
+C:\Users\adrion\Desktop\New folder (4)\System.Windows.Extensions.dll
+C:\Users\adrion\Desktop\New folder (4)\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\adrion\Desktop\New folder (4)\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Users\adrion\Desktop\New folder (4)\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\adrion\Desktop\New folder (4)\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\adrion\Desktop\New folder (4)\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\adrion\Desktop\New folder (4)\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\adrion\Desktop\New folder (4)\runtimes\win\lib\net6.0\System.Windows.Extensions.dll

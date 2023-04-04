@@ -1,0 +1,31 @@
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\VFP Table Creator.exe
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\VFP Table Creator.deps.json
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\VFP Table Creator.runtimeconfig.json
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\VFP Table Creator.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\VFP Table Creator.pdb
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\System.Configuration.ConfigurationManager.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\System.Data.OleDb.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\System.Drawing.Common.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\System.Security.Permissions.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\System.Windows.Extensions.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\bin\Release\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\obj\Release\net7.0\VFP Table Creator.csproj.AssemblyReference.cache
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\obj\Release\net7.0\VFP Table Creator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\obj\Release\net7.0\VFP Table Creator.AssemblyInfoInputs.cache
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\obj\Release\net7.0\VFP Table Creator.AssemblyInfo.cs
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\obj\Release\net7.0\VFP Table Creator.csproj.CoreCompileInputs.cache
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\obj\Release\net7.0\VFP Table Creator.csproj.CopyComplete
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\obj\Release\net7.0\VFP Table Creator.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\obj\Release\net7.0\refint\VFP Table Creator.dll
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\obj\Release\net7.0\VFP Table Creator.pdb
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\obj\Release\net7.0\VFP Table Creator.genruntimeconfig.cache
+C:\Users\adrion\source\repos\VFP-Table-Creator\VFP Table Creator\VFP Table Creator\obj\Release\net7.0\ref\VFP Table Creator.dll

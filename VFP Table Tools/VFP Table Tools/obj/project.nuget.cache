@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "wPgJM5z10IxA6aDt5Pa3gf+SbHyfwiXL2MX1RqNXXwWgBau/UZ5LFCA9o26wwPcwj92F2lxbxA5TsbScyl1x2Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\adrion\\source\\repos\\VFP-Table-Tools\\VFP Table Tools\\VFP Table Tools\\VFP Table Tools.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\adrion\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\adrion\\.nuget\\packages\\system.configuration.configurationmanager\\6.0.0\\system.configuration.configurationmanager.6.0.0.nupkg.sha512",
+    "C:\\Users\\adrion\\.nuget\\packages\\system.data.oledb\\6.0.0\\system.data.oledb.6.0.0.nupkg.sha512",
+    "C:\\Users\\adrion\\.nuget\\packages\\system.diagnostics.performancecounter\\6.0.0\\system.diagnostics.performancecounter.6.0.0.nupkg.sha512",
+    "C:\\Users\\adrion\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
+    "C:\\Users\\adrion\\.nuget\\packages\\system.security.accesscontrol\\6.0.0\\system.security.accesscontrol.6.0.0.nupkg.sha512",
+    "C:\\Users\\adrion\\.nuget\\packages\\system.security.cryptography.protecteddata\\6.0.0\\system.security.cryptography.protecteddata.6.0.0.nupkg.sha512",
+    "C:\\Users\\adrion\\.nuget\\packages\\system.security.permissions\\6.0.0\\system.security.permissions.6.0.0.nupkg.sha512",
+    "C:\\Users\\adrion\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

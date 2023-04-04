@@ -4,11 +4,16 @@ using System.Globalization;
 using System.Text;
 using static System.Int32;
 
+
 namespace VFPTableTools
 {
+#pragma warning disable CS8602
+#pragma warning disable CS8625
+#pragma warning disable CS8600
+
     static class Program
     {
-        
+
         static string SelectConnectionString()
         {
             Console.WriteLine("\nSelect a connection option:");
@@ -22,17 +27,21 @@ namespace VFPTableTools
             switch (choice)
             {
                 case 1:
-                    return @"Provider=VFPOLEDB;Data Source=C:\\Thrive\\sfdata\\vista.dbc;Collating Sequence=machine; Deleted=true;";
+                    return
+                        @"Provider=VFPOLEDB;Data Source=C:\\Thrive\\sfdata\\vista.dbc;Collating Sequence=machine; Deleted=true;";
                 case 2:
-                    return @"Provider=VFPOLEDB;Data Source=\\\\DEV-SERVER-1\\Thrive\\sfdata\\vista.dbc;Collating Sequence=machine; Deleted=true;";
+                    return
+                        @"Provider=VFPOLEDB;Data Source=\\\\DEV-SERVER-1\\Thrive\\sfdata\\vista.dbc;Collating Sequence=machine; Deleted=true;";
                 case 3:
                     Console.Write("Enter a custom connection string: ");
                     return Console.ReadLine() ?? string.Empty;
                 default:
                     Console.WriteLine("Invalid choice. Using local connection string as default.");
-                    return @"Provider=VFPOLEDB;Data Source=C:\\Thrive\\sfdata\\vista.dbc;Collating Sequence=machine; Deleted=true;";
+                    return
+                        @"Provider=VFPOLEDB;Data Source=C:\\Thrive\\sfdata\\vista.dbc;Collating Sequence=machine; Deleted=true;";
             }
         }
+
         static void Main()
         {
             var connectionString = SelectConnectionString();
@@ -69,6 +78,89 @@ namespace VFPTableTools
             }
         }
 
+        static List<string> ReservedKeywords = new List<string>
+        {
+            "ADD",
+            "ALL",
+            "ALTER",
+            "AND",
+            "ANY",
+            "AS",
+            "ASC",
+            "AUTOINC",
+            "AVG",
+            "BETWEEN",
+            "BINTOC",
+            "BITAND",
+            "BITCLEAR",
+            "BITLSHIFT",
+            "BITNOT",
+            "BITOR",
+            "BITRSHIFT",
+            "BITSET",
+            "BITTEST",
+            "BY",
+            "CASCADE",
+            "CASE",
+            "CAST",
+            "CDBL",
+            "CHARACTER",
+            "COLLATE",
+            "COLUMN",
+            "CONSTRAINT",
+            "CONTAINS",
+            "COUNT",
+            "CREATE",
+            "CURDATE",
+            "CURTIME",
+            "DAY",
+            "DELETE",
+            "DESC",
+            "DISTINCT",
+            "DROP",
+            "ELSE",
+            "END",
+            "EXISTS",
+            "FOR",
+            "FOREIGN",
+            "FROM",
+            "GROUP",
+            "HAVING",
+            "IN",
+            "INDEX",
+            "INNER",
+            "INSERT",
+            "INTO",
+            "IS",
+            "JOIN",
+            "KEY",
+            "LEFT",
+            "LIKE",
+            "MAX",
+            "MIN",
+            "NOT",
+            "NULL",
+            "ON",
+            "OR",
+            "ORDER",
+            "OUTER",
+            "PRIMARY",
+            "REFERENCES",
+            "SELECT",
+            "SET",
+            "SOME",
+            "SUM",
+            "TABLE",
+            "THEN",
+            "TO",
+            "UNION",
+            "UNIQUE",
+            "UPDATE",
+            "VALUES",
+            "WHERE",
+            "YEAR"
+        };
+
         static void CreateTable(string connectionString)
         {
             Console.Write("Enter the table name: ");
@@ -85,6 +177,20 @@ namespace VFPTableTools
                 {
                     Console.Write($"Enter the field name for field #{i}: ");
                     var fieldName = Console.ReadLine();
+
+                    // Check if the field name is a reserved keyword
+                    if (ReservedKeywords.Contains(fieldName?.ToUpper() ?? string.Empty))
+                    {
+                        Console.WriteLine(
+                            $"'{fieldName}' is a reserved keyword. Please choose a different field name.");
+                        continue;
+                    }
+
+                    if (string.IsNullOrEmpty(fieldName))
+                    {
+                        Console.WriteLine("Please enter a field name.");
+                        continue;
+                    }
 
                     Console.WriteLine("Field Types:");
                     Console.WriteLine("C (Character) - string, stores a fixed-length character string.");
@@ -215,6 +321,7 @@ namespace VFPTableTools
 
         static List<string> GetTableNames(string connectionString)
         {
+#pragma warning disable CA1416 // This call site is reachable on all platforms. 'OleDbCommand' is only supported on: 'windows'.    
             List<string> tableNames = new List<string>();
 
             using (OleDbConnection connection = new OleDbConnection(connectionString))
@@ -225,8 +332,8 @@ namespace VFPTableTools
 
                 foreach (DataRow row in tableSchemaTable.Rows)
                 {
-                    string tableName = row["TABLE_NAME"].ToString();
-                    tableNames.Add(tableName);
+                    var tableName = row["TABLE_NAME"].ToString();
+                    if (tableName != null) tableNames.Add(tableName);
                 }
             }
 
@@ -241,8 +348,9 @@ namespace VFPTableTools
                 Console.WriteLine("=====================");
                 Console.WriteLine("1. Inspect table");
                 Console.WriteLine("2. Export table to CSV");
-                Console.WriteLine("3. Mirror table from CSV");
-                Console.WriteLine("4. Delete table");
+                Console.WriteLine("3. Import table from CSV");
+                Console.WriteLine("4. Mirror table from CSV");
+                Console.WriteLine("5. Delete table");
                 Console.WriteLine("0. Go back");
 
                 Console.Write("\nEnter option number: ");
@@ -267,18 +375,22 @@ namespace VFPTableTools
                             Console.Write(
                                 "\nEnter the path to the CSV file (or press Enter to use the root directory -> csv ): ");
                             var csvPath = Console.ReadLine().Trim();
-                            MirrorCsvToTable(connectionString, tableName,
+                            ImportCsvToTable(connectionString, tableName,
                                 string.IsNullOrEmpty(primaryKeyColumnName) ? "id" : primaryKeyColumnName, csvPath);
                             break;
                         case 4:
-                            if (DeleteTable(connectionString, tableName))
-                            {
-                                Console.WriteLine($"The table '{tableName}' was deleted successfully.");
-                            }
-                            else
-                            {
-                                Console.WriteLine($"Failed to delete the table '{tableName}'.");
-                            }
+                            Console.Write("\nEnter the name of the primary key column (or press Enter to use 'id'): ");
+                            primaryKeyColumnName = Console.ReadLine().Trim();
+                            Console.Write(
+                                "\nEnter the path to the CSV file (or press Enter to use the root directory -> csv ): ");
+                            csvPath = Console.ReadLine().Trim();
+                            ImportCsvToTable(connectionString, tableName,
+                                string.IsNullOrEmpty(primaryKeyColumnName) ? "id" : primaryKeyColumnName, csvPath, true);
+                            break;
+                        case 5:
+                            Console.WriteLine(DeleteTable(connectionString, tableName)
+                                ? $"The table '{tableName}' was deleted successfully."
+                                : $"Failed to delete the table '{tableName}'.");
 
                             break;
                         case 0:
@@ -303,24 +415,17 @@ namespace VFPTableTools
                 {
                     connection.Open();
 
-                    using (OleDbTransaction transaction = connection.BeginTransaction())
+                    try
                     {
-                        try
+                        using (OleDbCommand command = new OleDbCommand($"DROP TABLE {tableName}", connection))
                         {
-                            using (OleDbCommand command =
-                                   new OleDbCommand($"DROP TABLE {tableName}", connection, transaction))
-                            {
-                                command.ExecuteNonQuery();
-                            }
-
-                            transaction.Commit();
+                            command.ExecuteNonQuery();
                         }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"An error occurred while deleting the table: {ex.Message}");
-                            transaction.Rollback();
-                            return false;
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"An error occurred while deleting the table: {ex.Message}");
+                        return false;
                     }
                 }
 
@@ -454,8 +559,8 @@ namespace VFPTableTools
             Console.WriteLine($"Exported to CSV -> {outputDirectory}\\{tableName}.csv");
         }
 
-        static void MirrorCsvToTable(string connectionString, string tableName, string primaryKeyColumn,
-            string? csvFilePath = null)
+        static void ImportCsvToTable(string connectionString, string tableName, string primaryKeyColumn,
+            string? csvFilePath = null, bool Mirror = false)
         {
             if (string.IsNullOrEmpty(csvFilePath))
                 csvFilePath = $"csv\\{tableName}.csv";
@@ -594,25 +699,28 @@ namespace VFPTableTools
                     }
                 }
 
-                // Delete remaining rows from the Visual FoxPro table
-                using (OleDbConnection connection = new OleDbConnection(connectionString))
+                if (Mirror)
                 {
-                    connection.Open();
-                    using (OleDbCommand command = new OleDbCommand())
+                    // Delete remaining rows from the Visual FoxPro table
+                    using (OleDbConnection connection = new OleDbConnection(connectionString))
                     {
-                        command.Connection = connection;
-
-                        foreach (object primaryKeyValue in primaryKeysInTable)
+                        connection.Open();
+                        using (OleDbCommand command = new OleDbCommand())
                         {
-                            command.CommandText = $"DELETE FROM {tableName} WHERE {primaryKeyColumn} = ?";
-                            command.Parameters.Clear();
-                            command.Parameters.AddWithValue($"@{primaryKeyColumn}", primaryKeyValue);
-                            command.ExecuteNonQuery();
-                            Console.WriteLine($"Deleted row with {primaryKeyColumn} = {primaryKeyValue}");
-                        }
-                    }
+                            command.Connection = connection;
 
-                    connection.Close();
+                            foreach (object primaryKeyValue in primaryKeysInTable)
+                            {
+                                command.CommandText = $"DELETE FROM {tableName} WHERE {primaryKeyColumn} = ?";
+                                command.Parameters.Clear();
+                                command.Parameters.AddWithValue($"@{primaryKeyColumn}", primaryKeyValue);
+                                command.ExecuteNonQuery();
+                                Console.WriteLine($"Deleted row with {primaryKeyColumn} = {primaryKeyValue}");
+                            }
+                        }
+
+                        connection.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -785,5 +893,8 @@ namespace VFPTableTools
             }
         }
     }
+#pragma warning restore CS8602
+#pragma warning restore CS8625
+#pragma warning restore CS8600
 
 }

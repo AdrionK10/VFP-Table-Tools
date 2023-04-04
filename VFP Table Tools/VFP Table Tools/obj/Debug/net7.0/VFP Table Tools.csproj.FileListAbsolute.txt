@@ -1,0 +1,31 @@
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\VFP Table Tools.exe
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\VFP Table Tools.deps.json
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\VFP Table Tools.runtimeconfig.json
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\VFP Table Tools.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\VFP Table Tools.pdb
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\System.Data.OleDb.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\System.Drawing.Common.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\System.Security.Permissions.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\System.Windows.Extensions.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Debug\net7.0\VFP Table Tools.csproj.AssemblyReference.cache
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Debug\net7.0\VFP Table Tools.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Debug\net7.0\VFP Table Tools.AssemblyInfoInputs.cache
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Debug\net7.0\VFP Table Tools.AssemblyInfo.cs
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Debug\net7.0\VFP Table Tools.csproj.CoreCompileInputs.cache
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Debug\net7.0\VFP Table Tools.csproj.CopyComplete
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Debug\net7.0\VFP Table Tools.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Debug\net7.0\refint\VFP Table Tools.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Debug\net7.0\VFP Table Tools.pdb
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Debug\net7.0\VFP Table Tools.genruntimeconfig.cache
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Debug\net7.0\ref\VFP Table Tools.dll

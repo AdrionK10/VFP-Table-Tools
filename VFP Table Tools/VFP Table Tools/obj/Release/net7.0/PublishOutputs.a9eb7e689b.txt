@@ -1,0 +1,20 @@
+C:\Users\adrion\Desktop\VFP Table Tools\VFP Table Tools.exe
+C:\Users\adrion\Desktop\VFP Table Tools\VFP Table Tools.dll
+C:\Users\adrion\Desktop\VFP Table Tools\VFP Table Tools.deps.json
+C:\Users\adrion\Desktop\VFP Table Tools\VFP Table Tools.runtimeconfig.json
+C:\Users\adrion\Desktop\VFP Table Tools\VFP Table Tools.pdb
+C:\Users\adrion\Desktop\VFP Table Tools\Microsoft.Win32.SystemEvents.dll
+C:\Users\adrion\Desktop\VFP Table Tools\System.Configuration.ConfigurationManager.dll
+C:\Users\adrion\Desktop\VFP Table Tools\System.Data.OleDb.dll
+C:\Users\adrion\Desktop\VFP Table Tools\System.Diagnostics.PerformanceCounter.dll
+C:\Users\adrion\Desktop\VFP Table Tools\System.Drawing.Common.dll
+C:\Users\adrion\Desktop\VFP Table Tools\System.Security.Cryptography.ProtectedData.dll
+C:\Users\adrion\Desktop\VFP Table Tools\System.Security.Permissions.dll
+C:\Users\adrion\Desktop\VFP Table Tools\System.Windows.Extensions.dll
+C:\Users\adrion\Desktop\VFP Table Tools\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\adrion\Desktop\VFP Table Tools\runtimes\win\lib\net6.0\System.Data.OleDb.dll
+C:\Users\adrion\Desktop\VFP Table Tools\runtimes\win\lib\net6.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\adrion\Desktop\VFP Table Tools\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+C:\Users\adrion\Desktop\VFP Table Tools\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\adrion\Desktop\VFP Table Tools\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\adrion\Desktop\VFP Table Tools\runtimes\win\lib\net6.0\System.Windows.Extensions.dll

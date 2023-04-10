@@ -29,3 +29,4 @@ C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj
 C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Release\net7.0\VFP Table Tools.pdb
 C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Release\net7.0\VFP Table Tools.genruntimeconfig.cache
 C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\obj\Release\net7.0\ref\VFP Table Tools.dll
+C:\Users\adrion\source\repos\VFP-Table-Tools\VFP Table Tools\VFP Table Tools\bin\Release\net7.0\Readme.txt

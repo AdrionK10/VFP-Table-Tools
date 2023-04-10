@@ -13,5 +13,11 @@
     <ItemGroup>
         <PackageReference Include="System.Data.OleDb" Version="6.0.0" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <None Update="Readme.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 
 </Project>

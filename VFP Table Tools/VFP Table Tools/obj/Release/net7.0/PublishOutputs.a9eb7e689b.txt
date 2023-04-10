@@ -1,3 +1,4 @@
+C:\Users\adrion\Desktop\VFP Table Tools\Readme.txt
 C:\Users\adrion\Desktop\VFP Table Tools\VFP Table Tools.exe
 C:\Users\adrion\Desktop\VFP Table Tools\VFP Table Tools.dll
 C:\Users\adrion\Desktop\VFP Table Tools\VFP Table Tools.deps.json

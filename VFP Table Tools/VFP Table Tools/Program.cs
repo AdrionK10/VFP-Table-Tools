@@ -18,23 +18,23 @@ namespace VFPTableTools
         {
             Console.WriteLine("\nSelect a connection option:");
             Console.WriteLine("1. Local (default)");
-            Console.WriteLine("2. Test");
-            Console.WriteLine("3. Custom");
+            // Console.WriteLine("2. Test");
+            // Console.WriteLine("3. Custom");
 
             Console.Write("\nEnter your choice: ");
-            int choice = Parse(Console.ReadLine() ?? string.Empty);
+            var choice = Parse(Console.ReadLine() ?? string.Empty);
 
             switch (choice)
             {
                 case 1:
                     return
                         @"Provider=VFPOLEDB;Data Source=C:\\Thrive\\sfdata\\vista.dbc;Collating Sequence=machine; Deleted=true;";
-                case 2:
-                    return
-                        @"Provider=VFPOLEDB;Data Source=\\\\DEV-SERVER-1\\Thrive\\sfdata\\vista.dbc;Collating Sequence=machine; Deleted=true;";
-                case 3:
-                    Console.Write("Enter a custom connection string: ");
-                    return Console.ReadLine() ?? string.Empty;
+                // case 2:
+                //     return
+                //         @"Provider=VFPOLEDB;Data Source=\\\\DEV-SERVER-1\\Thrive\\sfdata\\vista.dbc;Collating Sequence=machine; Deleted=true;";
+                // case 3:
+                //     Console.Write("Enter a custom connection string: ");
+                //     return Console.ReadLine() ?? string.Empty;
                 default:
                     Console.WriteLine("Invalid choice. Using local connection string as default.");
                     return
@@ -50,8 +50,9 @@ namespace VFPTableTools
             while (!exit)
             {
                 Console.WriteLine("\nMain Menu:");
-                Console.WriteLine("1. Create Table");
-                Console.WriteLine("2. Table Tools");
+                Console.WriteLine("1. Create new Table");
+                Console.WriteLine("2. Table Tools (vista.dbc)");
+                Console.WriteLine("3. Table Tools (other)");
                 Console.WriteLine("0. Exit");
 
                 Console.Write("\nEnter your choice: ");
@@ -62,9 +63,13 @@ namespace VFPTableTools
                     case 1:
                         CreateTable(connectionString);
                         break;
-
-                    case 2:
+                    
+                    case 2: 
                         TableToolsMenu(connectionString);
+                        break;
+
+                    case 3:
+                        OpenMiscTableTools(connectionString);
                         break;
 
                     case 0:
@@ -78,6 +83,222 @@ namespace VFPTableTools
             }
         }
 
+        static void OpenMiscTableTools(string connectionString)
+        {
+            var folderPath = "C:/Thrive/sfdata";
+  
+            var dbcTables = new List<string>();
+
+            // Get list of tables in vista.dbc
+#pragma warning disable CA1416
+            using (var connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+                var schema = connection.GetSchema("Tables");
+
+                dbcTables.AddRange(from DataRow row in schema.Rows where row["TABLE_TYPE"].ToString() == "TABLE"
+                    select row["TABLE_NAME"].ToString().ToLower());
+            }
+#pragma warning restore CA1416      
+
+            // Get list of .dbf files in the folder
+            var dbfFiles = Directory.GetFiles(folderPath, "*.dbf");
+
+            // Filter .dbf files that are not in vista.dbc
+            var nonAssociatedTables = dbfFiles
+                .Select(Path.GetFileNameWithoutExtension)
+                .Where(name => !dbcTables.Contains(name.ToLower()))
+                .ToList();
+
+            // Display non-associated tables
+            Console.WriteLine("\nNon-associated tables:");
+            foreach (var table in nonAssociatedTables)
+            {
+                Console.WriteLine(table);
+            }
+
+            // Prompt user to select a table to add
+            Console.Write("\nEnter the table name: ");
+            var tableName = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(tableName) &&
+                nonAssociatedTables.Contains(tableName, StringComparer.OrdinalIgnoreCase))
+            {
+                while (true)
+                {
+                    Console.WriteLine("** MISC TABLE TOOLS **");
+                    Console.WriteLine("** THESE TOOLS WILL NOT WORK WITH TABLES ASSOCIATED WITH OTHER DATABASES! ONLY vista.dbc**");
+                    Console.WriteLine("1. Rebuild Table for DBC (performs all actions below)");
+                    Console.WriteLine("2. Disassociate Table From Previous DBC");
+                    Console.WriteLine("3. Add Table to DBC");
+                    Console.WriteLine("4. Update sysgenpk table");
+                    Console.WriteLine("0. Go Back");
+
+                    Console.Write("\nEnter your choice: ");
+                    var choice = Parse(Console.ReadLine() ?? string.Empty);
+
+                    switch (choice)
+                    {
+                        case 1:
+                            DisassociateTableFromDbc(tableName);
+                            AddTableToDbc(connectionString, tableName);
+                            Console.WriteLine("\nEnter the name of the primary key column (or press Enter to use 'id'): ");
+                            var primaryKeyColumnName = Console.ReadLine().Trim();
+                            AddRecordToSysgenpk(connectionString, tableName, 
+                                string.IsNullOrEmpty(primaryKeyColumnName) ? "id" : primaryKeyColumnName);
+                            break;
+
+                        case 2:
+                            DisassociateTableFromDbc(tableName);
+                            break;
+                        
+                        case 3:
+                            AddTableToDbc(connectionString, tableName);
+                            break;
+                        case 4: 
+                            Console.WriteLine("\nEnter the name of the primary key column (or press Enter to use 'id'): ");
+                            primaryKeyColumnName = Console.ReadLine().Trim();
+                            AddRecordToSysgenpk(connectionString, tableName, 
+                                string.IsNullOrEmpty(primaryKeyColumnName) ? "id" : primaryKeyColumnName);
+                            break;
+
+                        case 0:
+                            return;
+
+                        default:
+                            Console.WriteLine("Invalid choice. Please enter a valid option.");
+                            break;
+                    }
+                }
+
+
+            }
+            else if (!string.IsNullOrEmpty(tableName))
+            {
+                Console.WriteLine("Invalid table name. Operation canceled.");
+            }
+
+            Console.ReadLine();
+        }
+
+        static void AddTableToDbc(string connectionString, string tableName)
+        {
+#pragma warning disable CA1416
+            using (var connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+
+                var sqlCommand = $"EXECSCRIPT('ADD TABLE {tableName}')";
+
+                using (var command = new OleDbCommand(sqlCommand, connection))
+                {
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        Console.WriteLine($"Table '{tableName}' added to vista.dbc successfully.");
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
+            }
+                
+#pragma warning restore CA1416
+        }
+
+        static void AddRecordToSysgenpk(string connectionString, string tableName, string idColumnName)
+        {
+            var highestId = GetHighestIdFromTable(connectionString, tableName, idColumnName);
+            var nextPrimaryKey = highestId + 1;
+
+            #pragma warning disable CA1416
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+
+                // Check if a record for the table exists in sysgenpk
+                var tableRecordExists = false;
+                var checkSql = $"SELECT COUNT(*) FROM sysgenpk WHERE table = ?";
+                using (OleDbCommand checkCommand = new OleDbCommand(checkSql, connection))
+                {
+                    checkCommand.Parameters.AddWithValue("table", tableName);
+                    var count = Convert.ToInt32(checkCommand.ExecuteScalar()!);
+                    tableRecordExists = count > 0;
+                }
+
+                string sqlCommand;
+                int rowsAffected;
+
+                if (tableRecordExists)
+                {
+                    // Update the existing record
+                    sqlCommand = "UPDATE sysgenpk SET current = ? WHERE table = ?";
+                    using (OleDbCommand command = new OleDbCommand(sqlCommand, connection))
+                    {
+                        command.Parameters.AddWithValue("current", nextPrimaryKey);
+                        command.Parameters.AddWithValue("table", tableName);
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine(
+                            $"The sysgenpk record for table '{tableName}' has been updated with the next primary key set to {nextPrimaryKey}.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Failed to update the sysgenpk record for table '{tableName}'.");
+                    }
+                }
+                else
+                {
+                    // Insert a new record
+                    sqlCommand = "INSERT INTO sysgenpk (table, current) VALUES (?, ?)";
+                    using (OleDbCommand command = new OleDbCommand(sqlCommand, connection))
+                    {
+                        command.Parameters.AddWithValue("table", tableName);
+                        command.Parameters.AddWithValue("current", nextPrimaryKey);
+                        rowsAffected = command.ExecuteNonQuery();
+                    }
+
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine(
+                            $"A new sysgenpk record has been added for table '{tableName}' with the next primary key set to {nextPrimaryKey}.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Failed to add a sysgenpk record for table '{tableName}'.");
+                    }
+                }
+            }
+        }
+
+        static int GetHighestIdFromTable(string connectionString, string tableName, string idColumnName)
+        {
+            int highestId = 0;
+
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+
+                string sqlCommand = $"SELECT MAX({idColumnName}) as HighestId FROM {tableName}";
+
+                using (OleDbCommand command = new OleDbCommand(sqlCommand, connection))
+                {
+                    using (OleDbDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read() && !reader.IsDBNull(0))
+                        {
+                            highestId = reader.GetInt32(0);
+                        }
+                    }
+                }
+            }
+
+            return highestId;
+        }
         static List<string> ReservedKeywords = new List<string>
         {
             "ADD",
@@ -350,7 +571,8 @@ namespace VFPTableTools
                 Console.WriteLine("2. Export table to CSV");
                 Console.WriteLine("3. Import table from CSV");
                 Console.WriteLine("4. Mirror table from CSV");
-                Console.WriteLine("5. Delete table");
+                Console.WriteLine("5. Disassociate Table from vista.dbc");
+                Console.WriteLine("6. Delete table");
                 Console.WriteLine("0. Go back");
 
                 Console.Write("\nEnter option number: ");
@@ -387,7 +609,12 @@ namespace VFPTableTools
                             ImportCsvToTable(connectionString, tableName,
                                 string.IsNullOrEmpty(primaryKeyColumnName) ? "id" : primaryKeyColumnName, csvPath, true);
                             break;
-                        case 5:
+                        case 5: // new option number
+                            Console.WriteLine("Disassociating table from vista.dbc...");
+                            DisassociateTableFromDbc(tableName);
+                            DeleteTable(connectionString, tableName);
+                            break;
+                        case 6:
                             Console.WriteLine(DeleteTable(connectionString, tableName)
                                 ? $"The table '{tableName}' was deleted successfully."
                                 : $"Failed to delete the table '{tableName}'.");
@@ -434,6 +661,40 @@ namespace VFPTableTools
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while connecting to the database: {ex.Message}");
+                return false;
+            }
+        }
+        
+        static bool DisassociateTableFromDbc(string tableName)
+        {
+            string dbfFilePath = "C:/Thrive/sfdata/" + tableName + ".dbf";
+            byte[] oldValue1 = {0x76, 0x69, 0x73, 0x74, 0x61, 0x2E, 0x64, 0x62, 0x63};
+            byte[] oldValue2 = {0x0D, 0x56, 0x49, 0x53, 0x54, 0x41, 0x2E, 0x44, 0x42, 0x43};
+            byte[] newValue = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+            try
+            {
+                byte[] fileBytes = File.ReadAllBytes(dbfFilePath);
+
+                for (int i = 0; i < fileBytes.Length - oldValue1.Length; i++)
+                {
+                    if (fileBytes.Skip(i).Take(oldValue1.Length).SequenceEqual(oldValue1) ||
+                        fileBytes.Skip(i).Take(oldValue2.Length).SequenceEqual(oldValue2))
+                    {
+                        Array.Copy(newValue, 0, fileBytes, i, newValue.Length);
+                        File.WriteAllBytes(dbfFilePath, fileBytes);
+                        Console.WriteLine($"The table '{tableName}' was disassociated from vista.dbc successfully.");
+                        return true;
+                    }
+                }
+
+                // No matching values found
+                Console.WriteLine($"'{tableName}' was never associated with vista.dbc in the first place.");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error disassociating table: {ex.Message}");
                 return false;
             }
         }
